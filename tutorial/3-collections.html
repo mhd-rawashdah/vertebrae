@@ -41,6 +41,8 @@ var Comment = Backbone.Model.extend({
     }
   }
 });
+
+
 var CommentView = Backbone.View.extend({
   initialize: function() {
     this.model.on('change:votes', this.render, this);
@@ -111,8 +113,9 @@ var CommentsView = Backbone.View.extend({
      * Remember, we have the underscore functions: */
     this.$el.find('ul').append(this.collection.map(function(comment) {
       // YOUR CODE HERE
+      // return a\render ti li with the comment inside to ul 
+      return ['<li>',comment.get('message'), ",  Votes: " ,comment.get('votes'),'</li>'].join('');
     }));
-
     return this.$el;
   }
 });
@@ -134,7 +137,7 @@ var comments = new Comments(commentList);
 var commentsView = new CommentsView({ collection: comments });
 
 // Append it to the page (uncomment this when you are ready):
-// $('body').append(commentsView.render());
+$('body').append(commentsView.render());
     </script>
   </body>
 </html>
